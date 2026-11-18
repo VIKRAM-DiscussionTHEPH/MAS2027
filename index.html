@@ -75,25 +75,22 @@
 
 <body class="bg-[#f8f5f2]">
 
-    const heading = document.getElementById("masHeading");
+   <script>
+const heading = document.getElementById("masHeading");
 const originalText = heading.textContent;
 
 heading.innerHTML = "";
 
 [...originalText].forEach((char, index) => {
-    if (char === " ") {
-        heading.appendChild(document.createTextNode(" "));
-        return;
-    }
-
-    if (char === "\n") {
-        heading.appendChild(document.createTextNode(" "));
+    if (char === " " || char === "\n") {
+        heading.appendChild(document.createTextNode(char));
         return;
     }
 
     const span = document.createElement("span");
     span.className = "letter";
     span.textContent = char;
+
     span.style.setProperty(
         "--delay",
         `${(index % 25) * 0.12}s`
@@ -101,6 +98,7 @@ heading.innerHTML = "";
 
     heading.appendChild(span);
 });
+</script>
     <!-- Navbar -->
     <nav class="bg-gray-800">
         <div class="mx-auto max-w-7xl px-2 sm:px-6 lg:px-8">
