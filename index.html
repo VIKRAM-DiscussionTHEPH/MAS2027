@@ -8,63 +8,99 @@
     <script src="https://cdn.tailwindcss.com"></script>
 
    <style>
-.conference-title {
+.mas-title {
     position: relative;
-    display: inline-block;
-    color: #ffffff;
-    font-weight: 700;
     text-align: center;
-    line-height: 1.4;
-    transition: text-shadow 0.4s ease;
+    width: 90%;
+    max-width: 1250px;
+    margin: auto;
+    z-index: 2;
 }
 
-.conference-title:hover {
-    text-shadow: 0 0 12px rgba(100, 210, 255, 0.65);
+.quantum-heading {
+    color: #ffffff;
+    font-size: clamp(25px, 4vw, 48px);
+    font-weight: 750;
+    line-height: 1.45;
+    letter-spacing: 0.5px;
 }
 
-/* Subtle moving light */
-.conference-title::after {
-    content: "";
-    position: absolute;
-    top: 0;
-    left: -100%;
-    width: 45%;
-    height: 100%;
-    background: linear-gradient(
-        90deg,
-        transparent,
-        rgba(100, 220, 255, 0.22),
-        transparent
-    );
-    transform: skewX(-20deg);
-    animation: lightSweep 6s ease-in-out infinite;
-    pointer-events: none;
-}
-
-@keyframes lightSweep {
-    0%, 65% { left: -100%; }
-    100% { left: 150%; }
-}
-
-.event-date {
+.quantum-heading .letter {
     display: inline-block;
-    color: #e8d59a;
-    font-size: 0.65em;
+    position: relative;
+    transition: color 0.25s, text-shadow 0.25s;
+    animation: quantumWave 3s ease-in-out infinite;
+    animation-delay: var(--delay);
+}
+
+.quantum-heading .letter:hover {
+    color: #65eaff;
+    text-shadow:
+        0 0 8px #00cfff,
+        0 0 18px #00aaff,
+        0 0 30px #0088ff;
+    transform: translateY(-3px);
+}
+
+@keyframes quantumWave {
+    0%, 100% {
+        color: #ffffff;
+        text-shadow: 0 0 2px #ffffff;
+    }
+    50% {
+        color: #b8f4ff;
+        text-shadow:
+            0 0 5px #00cfff,
+            0 0 12px rgba(0, 190, 255, 0.5);
+    }
+}
+
+.mas-date {
+    margin-top: 18px;
+    color: #e9d79e;
+    font-size: clamp(16px, 2vw, 23px);
     letter-spacing: 2px;
-    margin-top: 14px;
     font-weight: 500;
 }
 
 @media (prefers-reduced-motion: reduce) {
-    .conference-title::after {
+    .quantum-heading .letter {
         animation: none;
     }
 }
 </style>
+    
 </head>
     
 
 <body class="bg-[#f8f5f2]">
+
+    const heading = document.getElementById("masHeading");
+const originalText = heading.textContent;
+
+heading.innerHTML = "";
+
+[...originalText].forEach((char, index) => {
+    if (char === " ") {
+        heading.appendChild(document.createTextNode(" "));
+        return;
+    }
+
+    if (char === "\n") {
+        heading.appendChild(document.createTextNode(" "));
+        return;
+    }
+
+    const span = document.createElement("span");
+    span.className = "letter";
+    span.textContent = char;
+    span.style.setProperty(
+        "--delay",
+        `${(index % 25) * 0.12}s`
+    );
+
+    heading.appendChild(span);
+});
     <!-- Navbar -->
     <nav class="bg-gray-800">
         <div class="mx-auto max-w-7xl px-2 sm:px-6 lg:px-8">
@@ -160,17 +196,16 @@
       
     <div class="absolute inset-0 bg-black bg-opacity-50 flex flex-col items-center justify-center text-center text-white">
 
-    <div class="conference-title">
+    <div class="mas-title">
+    <h1 class="quantum-heading" id="masHeading">
+        Vikram Discussion on Condensed Matter High Energy Interface:
+        Matter across Scales (MAS 2027)
+    </h1>
 
-        <div class="orbit-particle">⚛</div>
-
-       <h1 class="conference-title text-5xl font-bold mb-4">
-    Vikram Discussion on Condensed Matter High Energy Interface: Matter across Scales (MAS 2027)
-    <br>
-    <span class="event-date">
+    <div class="mas-date">
         February 03-04, 2027
-    </span>
-</h1>
+    </div>
+</div>
 
     </div>
         <!-- <p class="text-xl mb-6">Exploring the mysteries of the neutrinos</p> -->
