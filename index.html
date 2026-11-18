@@ -9,28 +9,44 @@
 
     <style>
 .conference-title {
+    color: #fff;
+    text-align: center;
     position: relative;
-    width: 90%;
-    max-width: 1200px;
-    padding: 45px;
-    box-sizing: border-box;
+    cursor: pointer;
+    transition: all 0.4s ease;
+    animation: quantumGlow 3s ease-in-out infinite alternate;
 }
 
-.orbit-particle {
-    position: absolute;
-    top: 0;
-    left: 0;
-    font-size: 25px;
-    z-index: 5;
-    pointer-events: none;
-    offset-path: rect(0% 100% 100% 0% round 35px);
-    offset-distance: 0%;
-    animation: orbitParticle 12s linear infinite;
+.conference-title:hover {
+    transform: scale(1.025);
+    text-shadow:
+        0 0 10px #00eaff,
+        0 0 25px #00cfff,
+        0 0 45px #008cff;
 }
 
-@keyframes orbitParticle {
+.conference-title .event-date {
+    color: #ffe58a;
+    display: inline-block;
+    margin-top: 12px;
+    text-shadow: 0 0 12px #ffcc55;
+}
+
+@keyframes quantumGlow {
+    from {
+        text-shadow: 0 0 5px #ffffff,
+                     0 0 10px #00bfff;
+    }
     to {
-        offset-distance: 100%;
+        text-shadow: 0 0 12px #ffffff,
+                     0 0 25px #00d9ff,
+                     0 0 35px #0077ff;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .conference-title {
+        animation: none;
     }
 }
 </style>
@@ -137,11 +153,13 @@
 
         <div class="orbit-particle">⚛</div>
 
-        <h1 class="text-5xl font-bold mb-4">
-            Vikram Discussion on Condensed Matter High Energy Interface: Matter across Scales (MAS 2027)
-            <br>
-            February 03-04, 2027
-        </h1>
+       <h1 class="conference-title text-5xl font-bold mb-4">
+    Vikram Discussion on Condensed Matter High Energy Interface: Matter across Scales (MAS 2027)
+    <br>
+    <span class="event-date">
+        February 03-04, 2027
+    </span>
+</h1>
 
     </div>
         <!-- <p class="text-xl mb-6">Exploring the mysteries of the neutrinos</p> -->
