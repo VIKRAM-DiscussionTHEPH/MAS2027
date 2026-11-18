@@ -6,33 +6,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Vikram Discussion on Condensed Matter High Energy Interface: Matter across Scales (MAS 2027) | February 03-05, 2027</title>
     <script src="https://cdn.tailwindcss.com"></script>
-
-    <style>
-      @keyframes corePulse {
-        0%, 100% { transform: translate(-50%, -50%) scale(0.95); opacity: 0.35; }
-        50% { transform: translate(-50%, -50%) scale(1.15); opacity: 0.75; }
-      }
-      .cube-energy-glow {
-        animation: corePulse 4s ease-in-out infinite;
-      }
-
-      @keyframes energyStream {
-        0% { transform: translateX(-100%); opacity: 0; }
-        50% { opacity: 0.8; }
-        100% { transform: translateX(200%); opacity: 0; }
-      }
-      .stream-beam {
-        animation: energyStream 5s linear infinite;
-      }
-
-      @keyframes floatParticle {
-        0%, 100% { transform: translateY(0px) translateX(0px); opacity: 0.4; }
-        50% { transform: translateY(-18px) translateX(10px); opacity: 1; }
-      }
-      .particle-1 { animation: floatParticle 6s ease-in-out infinite; }
-      .particle-2 { animation: floatParticle 8s ease-in-out infinite 1.5s; }
-      .particle-3 { animation: floatParticle 7s ease-in-out infinite 3s; }
-    </style>
     
 </head>
 
@@ -126,27 +99,9 @@
     });
     </script>
 
-    <!-- Hero Section -->
- <!-- <div class="relative w-full h-[560px] bg-cover bg-center"
-        style="background-image: url('MAS2027.png');"> -->
-    <div class="relative w-full h-[560px] bg-contain bg-no-repeat bg-center bg-[#141e24] overflow-hidden"
-         style="background-image: url('MAS2027.png');">
-
-        <!-- Pulsing Energy Core Over the Center Cube -->
-        <div class="cube-energy-glow pointer-events-none absolute top-1/2 left-1/2 w-64 h-64 rounded-full bg-gradient-to-r from-cyan-400/40 via-purple-400/40 to-amber-400/40 blur-2xl mix-blend-screen"></div>
-
-        <!-- Flowing Light Beam Across the Center Axis -->
-        <div class="pointer-events-none absolute top-1/2 left-0 w-full h-1 -translate-y-1/2 overflow-hidden">
-            <div class="stream-beam w-1/3 h-full bg-gradient-to-r from-transparent via-white to-transparent blur-sm mix-blend-screen"></div>
-        </div>
-
-        <!-- Floating Quantum Particles -->
-        <span class="particle-1 pointer-events-none absolute top-[30%] left-[22%] w-2 h-2 rounded-full bg-cyan-300 blur-[1px] mix-blend-screen"></span>
-        <span class="particle-2 pointer-events-none absolute top-[65%] left-[72%] w-2.5 h-2.5 rounded-full bg-amber-300 blur-[1px] mix-blend-screen"></span>
-        <span class="particle-3 pointer-events-none absolute top-[35%] left-[78%] w-2 h-2 rounded-full bg-purple-300 blur-[1px] mix-blend-screen"></span>
-
-        <!-- Note: If you had title text or a navbar inside your old banner div, keep it right here before closing </div> -->
-    </div>
+    Hero Section -->
+  <div class="relative w-full h-[560px] bg-cover bg-center"
+        style="background-image: url('MAS2027.png');">
     
         <div
             class="absolute inset-0 bg-black bg-opacity-50 flex flex-col items-center justify-center text-center text-white">
