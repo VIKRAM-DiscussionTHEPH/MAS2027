@@ -7,98 +7,66 @@
     <title>Vikram Discussion on Condensed Matter High Energy Interface: Matter across Scales (MAS 2027) | February 03-05, 2027</title>
     <script src="https://cdn.tailwindcss.com"></script>
 
-   <style>
-.mas-title {
+  <style>
+.conference-title {
     position: relative;
-    text-align: center;
-    width: 90%;
-    max-width: 1250px;
-    margin: auto;
-    z-index: 2;
-}
-
-.quantum-heading {
-    color: #ffffff;
-    font-size: clamp(25px, 4vw, 48px);
-    font-weight: 750;
-    line-height: 1.45;
-    letter-spacing: 0.5px;
-}
-
-.quantum-heading .letter {
     display: inline-block;
-    position: relative;
-    transition: color 0.25s, text-shadow 0.25s;
-    animation: quantumWave 3s ease-in-out infinite;
-    animation-delay: var(--delay);
+    color: #ffffff;
+    font-weight: 700;
+    text-align: center;
+    line-height: 1.4;
+    transition: text-shadow 0.4s ease;
 }
 
-.quantum-heading .letter:hover {
-    color: #65eaff;
-    text-shadow:
-        0 0 8px #00cfff,
-        0 0 18px #00aaff,
-        0 0 30px #0088ff;
-    transform: translateY(-3px);
+.conference-title:hover {
+    text-shadow: 0 0 12px rgba(100, 210, 255, 0.65);
 }
 
-@keyframes quantumWave {
-    0%, 100% {
-        color: #ffffff;
-        text-shadow: 0 0 2px #ffffff;
-    }
-    50% {
-        color: #b8f4ff;
-        text-shadow:
-            0 0 5px #00cfff,
-            0 0 12px rgba(0, 190, 255, 0.5);
-    }
+/* Subtle moving light */
+.conference-title::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 45%;
+    height: 100%;
+    background: linear-gradient(
+        90deg,
+        transparent,
+        rgba(100, 220, 255, 0.22),
+        transparent
+    );
+    transform: skewX(-20deg);
+    animation: lightSweep 6s ease-in-out infinite;
+    pointer-events: none;
 }
 
-.mas-date {
-    margin-top: 18px;
-    color: #e9d79e;
-    font-size: clamp(16px, 2vw, 23px);
+@keyframes lightSweep {
+    0%, 65% { left: -100%; }
+    100% { left: 150%; }
+}
+
+.event-date {
+    display: inline-block;
+    color: #e8d59a;
+    font-size: 0.65em;
     letter-spacing: 2px;
+    margin-top: 14px;
     font-weight: 500;
 }
 
 @media (prefers-reduced-motion: reduce) {
-    .quantum-heading .letter {
+    .conference-title::after {
         animation: none;
     }
 }
 </style>
+
     
 </head>
     
 
 <body class="bg-[#f8f5f2]">
-
-   <script>
-const heading = document.getElementById("masHeading");
-const originalText = heading.textContent;
-
-heading.innerHTML = "";
-
-[...originalText].forEach((char, index) => {
-    if (char === " " || char === "\n") {
-        heading.appendChild(document.createTextNode(char));
-        return;
-    }
-
-    const span = document.createElement("span");
-    span.className = "letter";
-    span.textContent = char;
-
-    span.style.setProperty(
-        "--delay",
-        `${(index % 25) * 0.12}s`
-    );
-
-    heading.appendChild(span);
-});
-</script>
     <!-- Navbar -->
     <nav class="bg-gray-800">
         <div class="mx-auto max-w-7xl px-2 sm:px-6 lg:px-8">
@@ -194,22 +162,22 @@ heading.innerHTML = "";
       
     <div class="absolute inset-0 bg-black bg-opacity-50 flex flex-col items-center justify-center text-center text-white">
 
-    <div class="mas-title">
-    <h1 class="quantum-heading" id="masHeading">
-        Vikram Discussion on Condensed Matter High Energy Interface:
-        Matter across Scales (MAS 2027)
-    </h1>
+    <div class="conference-title">
 
-    <div class="mas-date">
+        <div class="orbit-particle">⚛</div>
+
+       <h1 class="conference-title text-5xl font-bold mb-4">
+    Vikram Discussion on Condensed Matter High Energy Interface: Matter across Scales (MAS 2027)
+    <br>
+    <span class="event-date">
         February 03-04, 2027
+    </span>
+</h1>
     </div>
-</div>
-
-    </div>
+        
         <!-- <p class="text-xl mb-6">Exploring the mysteries of the neutrinos</p> -->
             <a href="schedule.html" class="bg-blue-600 hover:bg-blue-700 text-white font-bold py-3 px-6 rounded-md">View
                 Schedule</a>
-
 </div>
        
         <p class="absolute bottom-2 right-4 text-xs text-gray-300 bg-black bg-opacity-50 px-2 py-1 rounded-md">
