@@ -8,60 +8,38 @@
     <script src="https://cdn.tailwindcss.com"></script>
 
   <style>
-.conference-title {
+.mas-container {
     position: relative;
-    display: inline-block;
-    color: #ffffff;
-    font-weight: 700;
+    max-width: 950px;
+    margin: auto;
     text-align: center;
-    line-height: 1.4;
-    transition: text-shadow 0.4s ease;
+    padding: 20px;
 }
 
-.conference-title:hover {
-    text-shadow: 0 0 12px rgba(100, 210, 255, 0.65);
-}
-
-/* Subtle moving light */
-.conference-title::after {
-    content: "";
+#quantumCanvas {
     position: absolute;
-    top: 0;
-    left: -100%;
-    width: 45%;
+    inset: 0;
+    width: 100%;
     height: 100%;
-    background: linear-gradient(
-        90deg,
-        transparent,
-        rgba(100, 220, 255, 0.22),
-        transparent
-    );
-    transform: skewX(-20deg);
-    animation: lightSweep 6s ease-in-out infinite;
     pointer-events: none;
 }
 
-@keyframes lightSweep {
-    0%, 65% { left: -100%; }
-    100% { left: 150%; }
+#masTitle {
+    position: relative;
+    z-index: 1;
+    color: white;
+    font-size: clamp(22px, 3vw, 38px);
+    line-height: 1.4;
 }
 
-.event-date {
-    display: inline-block;
-    color: #e8d59a;
-    font-size: 0.65em;
+.mas-container p {
+    position: relative;
+    z-index: 1;
+    color: #e9d79e;
     letter-spacing: 2px;
-    margin-top: 14px;
-    font-weight: 500;
-}
-
-@media (prefers-reduced-motion: reduce) {
-    .conference-title::after {
-        animation: none;
-    }
+    font-size: 16px;
 }
 </style>
-
     
 </head>
     
@@ -162,23 +140,85 @@
       <!-- Hero Section 2-->
       
     <div class="absolute inset-0 bg-black bg-opacity-50 flex flex-col items-center justify-center text-center text-white">
-    <div class="conference-title">
-        <div class="orbit-particle">⚛</div>
+    <div class="mas-container">
+        <canvas id="quantumCanvas"></canvas>
 
-       <h1 class="conference-title text-5xl font-bold mb-4">
-    Vikram Discussion on the interface of Condensed Matter & High Energy: Matter Across Scales (MAS 2027)
-    <br>
-    <span class="event-date">
-        February 03-05, 2027
-    </span>
-</h1>
+        <h1 id="masTitle" class="text-5xl font-bold mb-4">
+            Vikram Discussion on the interface of Condensed Matter & High Energy: Matter Across Scales (MAS 2027)
+        </h1>
+
+        <span class="event-date">
+            February 03-05, 2027
+        </span>
     </div>
-        
         <!-- <p class="text-xl mb-6">Exploring the mysteries of the neutrinos</p> -->
             <!-- <a href="schedule.html" class="bg-blue-600 hover:bg-blue-700 text-white font-bold py-3 px-6 rounded-md">View
                 Schedule</a> -->
 </div>
-       
+       <script>
+        const canvas = document.getElementById("quantumCanvas");
+const ctx = canvas.getContext("2d");
+
+let particles = [];
+
+function resizeCanvas() {
+    const rect = canvas.getBoundingClientRect();
+    const dpr = window.devicePixelRatio || 1;
+
+    canvas.width = rect.width * dpr;
+    canvas.height = rect.height * dpr;
+    ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+}
+
+function createParticles() {
+    const w = canvas.clientWidth;
+    const h = canvas.clientHeight;
+
+    particles = Array.from({ length: 65 }, () => ({
+        x: Math.random() * w,
+        y: Math.random() * h,
+        vx: (Math.random() - 0.5) * 0.7,
+        vy: (Math.random() - 0.5) * 0.7,
+        r: Math.random() * 1.8 + 0.7
+    }));
+}
+
+function animate() {
+    const w = canvas.clientWidth;
+    const h = canvas.clientHeight;
+
+    ctx.clearRect(0, 0, w, h);
+
+    particles.forEach(p => {
+        p.x += p.vx;
+        p.y += p.vy;
+
+        if (p.x < 0 || p.x > w) p.vx *= -1;
+        if (p.y < 0 || p.y > h) p.vy *= -1;
+
+        ctx.beginPath();
+        ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
+        ctx.fillStyle = "#55dfff";
+        ctx.shadowBlur = 10;
+        ctx.shadowColor = "#00cfff";
+        ctx.fill();
+        ctx.shadowBlur = 0;
+    });
+
+    requestAnimationFrame(animate);
+}
+
+resizeCanvas();
+createParticles();
+animate();
+
+window.addEventListener("resize", () => {
+    resizeCanvas();
+    createParticles();
+});
+    </script>
+
+      
         <p class="absolute bottom-2 right-4 text-xs text-gray-300 bg-black bg-opacity-50 px-2 py-1 rounded-md">
             Image Credit: assisted by Gemini
         </p> 
