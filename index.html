@@ -7,45 +7,56 @@
     <title>Vikram Discussion on Condensed Matter High Energy Interface: Matter across Scales (MAS 2027) | February 03-05, 2027</title>
     <script src="https://cdn.tailwindcss.com"></script>
 
-    <style>
+   <style>
 .conference-title {
-    color: #fff;
-    text-align: center;
     position: relative;
-    cursor: pointer;
-    transition: all 0.4s ease;
-    animation: quantumGlow 3s ease-in-out infinite alternate;
+    display: inline-block;
+    color: #ffffff;
+    font-weight: 700;
+    text-align: center;
+    line-height: 1.4;
+    transition: text-shadow 0.4s ease;
 }
 
 .conference-title:hover {
-    transform: scale(1.025);
-    text-shadow:
-        0 0 10px #00eaff,
-        0 0 25px #00cfff,
-        0 0 45px #008cff;
+    text-shadow: 0 0 12px rgba(100, 210, 255, 0.65);
 }
 
-.conference-title .event-date {
-    color: #ffe58a;
+/* Subtle moving light */
+.conference-title::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 45%;
+    height: 100%;
+    background: linear-gradient(
+        90deg,
+        transparent,
+        rgba(100, 220, 255, 0.22),
+        transparent
+    );
+    transform: skewX(-20deg);
+    animation: lightSweep 6s ease-in-out infinite;
+    pointer-events: none;
+}
+
+@keyframes lightSweep {
+    0%, 65% { left: -100%; }
+    100% { left: 150%; }
+}
+
+.event-date {
     display: inline-block;
-    margin-top: 12px;
-    text-shadow: 0 0 12px #ffcc55;
-}
-
-@keyframes quantumGlow {
-    from {
-        text-shadow: 0 0 5px #ffffff,
-                     0 0 10px #00bfff;
-    }
-    to {
-        text-shadow: 0 0 12px #ffffff,
-                     0 0 25px #00d9ff,
-                     0 0 35px #0077ff;
-    }
+    color: #e8d59a;
+    font-size: 0.65em;
+    letter-spacing: 2px;
+    margin-top: 14px;
+    font-weight: 500;
 }
 
 @media (prefers-reduced-motion: reduce) {
-    .conference-title {
+    .conference-title::after {
         animation: none;
     }
 }
