@@ -82,6 +82,80 @@
     display: inline-block;
     margin-top: 12px;
 }
+      .mas-container {
+    position: relative;
+    width: 95%;
+    max-width: 1100px;
+    margin: auto;
+    padding: 15px;
+}
+
+#quantumCanvas {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 2;
+    pointer-events: none;
+}
+
+.conference-title {
+    position: relative;
+    display: inline-block;
+    color: transparent;
+    font-weight: 700;
+    text-align: center;
+    line-height: 1.4;
+    transition: text-shadow 0.4s ease;
+}
+
+.conference-title::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 45%;
+    height: 100%;
+    background: linear-gradient(
+        90deg,
+        transparent,
+        rgba(100, 220, 255, 0.22),
+        transparent
+    );
+    transform: skewX(-20deg);
+    animation: lightSweep 6s ease-in-out infinite;
+    pointer-events: none;
+}
+
+.conference-title:hover {
+    text-shadow: 0 0 12px rgba(100, 210, 255, 0.65);
+}
+
+@keyframes lightSweep {
+    0%, 65% { left: -100%; }
+    100% { left: 150%; }
+}
+
+.conference-title.formed {
+    color: #ffffff;
+}
+
+.event-date {
+    position: relative;
+    z-index: 3;
+    display: inline-block;
+    color: #e8d59a;
+    font-size: 19px;
+    letter-spacing: 2px;
+    margin-top: 14px;
+    font-weight: 500;
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .conference-title::after {
+        animation: none;
+    }
+}
 </style>
     
 </head>
@@ -183,15 +257,16 @@
       <!-- Hero Section 2-->
       
     <div class="absolute inset-0 bg-black bg-opacity-50 flex flex-col items-center justify-center text-center text-white">
-    <div class="mas-container">
-        <canvas id="quantumCanvas"></canvas>
 
-        <h1 id="masTitle" class="text-5xl font-bold mb-4">
-            Vikram Discussion on the interface of Condensed Matter & High Energy: Matter Across Scales (MAS 2027)
-        </h1>
-        <span class="event-date">
-            February 03-05, 2027
-        </span>
+        <div class="mas-container">
+            <canvas id="quantumCanvas"></canvas>
+            <h1 id="masTitle" class="text-5xl font-bold mb-4 conference-title">
+                Vikram Discussion on the interface of Condensed Matter & High Energy: Matter Across Scales (MAS 2027)
+            </h1>
+
+            <span class="event-date">
+                February 03-04, 2027
+            </span>
     </div>
         <!-- <p class="text-xl mb-6">Exploring the mysteries of the neutrinos</p> -->
             <!-- <a href="schedule.html" class="bg-blue-600 hover:bg-blue-700 text-white font-bold py-3 px-6 rounded-md">View
@@ -296,7 +371,7 @@ function animate(now) {
     ctx.clearRect(0, 0, w, h);
 
     // PHASE 1: Particles form the letters
-    if (elapsed < 3500) {
+    if (elapsed < 2000) {
         particles.forEach(p => {
             p.x += (p.tx - p.x) * 0.065;
             p.y += (p.ty - p.y) * 0.065;
